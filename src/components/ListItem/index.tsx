@@ -1,21 +1,47 @@
+// components/ListItem/ListItem.tsx
+import { Item } from '../../context/types';
+import { useTask } from '../../hooks/useTask';
 import * as S from './styles';
-import { Item } from '../../types/Item';
 import { useState } from 'react';
 
 type Props = {
-    item: Item
-}
-export const ListItem = ({item}: Props) => {
-   const [isChecked, setIsChecked] = useState(item.done);
-   
-    return (
-        <S.Container done={isChecked}>
-         <input 
-            type="checkbox" 
-            checked={isChecked} 
-            onChange={e => setIsChecked(e.target.checked)}
-         />
-         <label>{item.name}</label>
-        </S.Container>
-    );
+  item: Item;
+};
+
+export function ListItem({ item }: Props) {
+  const { handleCompleteTask, handleDeleteTask, handleEditTask } = useTask();
+  const [isChecked, setIsChecked] = useState(item.done);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    handleCompleteTask(item.id);
+  };
+
+  const handleRemoveClick = () => {
+    handleDeleteTask(item.id);
+  };
+
+  const handleEditClick = () => {
+    const newName = prompt('Digite o novo nome da tarefa:', item.name);
+    if (newName !== null && newName.trim() !== '') {
+      handleEditTask(item.id, newName);
+    }
+  };
+
+  return (
+    <S.Wrapper done={isChecked}>
+      <S.Container done={isChecked}>
+        <S.Label id={`label-${item.id}`}>{item.name}</S.Label>
+      </S.Container>
+      <S.ContainerButtons>
+        <S.ButtonRemoveTask onClick={handleRemoveClick}>
+          Excluir
+        </S.ButtonRemoveTask>
+        <S.ButtonCompleteTask onClick={handleCheckboxChange}>
+          {isChecked ? 'Marcar como Pendente' : 'Concluir'}
+        </S.ButtonCompleteTask>
+        <S.ButtonEditTask onClick={handleEditClick}>Editar</S.ButtonEditTask>
+      </S.ContainerButtons>
+    </S.Wrapper>
+  );
 }
