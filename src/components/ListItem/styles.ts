@@ -1,19 +1,28 @@
-// components/ListItem/styles.ts
 import styled from 'styled-components';
 
 type ContainerProps = {
   done: boolean;
 };
 
-export const Wrapper = styled.div<ContainerProps>`
-  display: flex;
-  flex-direction: column;
+export const Wrapper = styled.article<ContainerProps>`
+  display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
-  opacity: ${({ done }) => (done ? 0.6 : 1)};
-  transition: opacity ${({ theme }) => theme.transitions.normal};
+  padding: ${({ theme }) => theme.spacing.md};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  background-color: ${({ theme, done }) =>
+    done ? theme.colors.surfaceMuted : theme.colors.surface};
+  transition:
+    transform ${({ theme }) => theme.transitions.normal},
+    border-color ${({ theme }) => theme.transitions.normal};
 
-  ${({ theme }) => theme.media.tablet} {
-    flex-direction: row;
+  &:hover {
+    transform: translateY(-1px);
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  ${({ theme }) => theme.media.desktop} {
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: ${({ theme }) => theme.spacing.md};
   }
@@ -21,123 +30,92 @@ export const Wrapper = styled.div<ContainerProps>`
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
-  background-color: ${({ theme }) => theme.colors.neutral.darkCard};
-  padding: ${({ theme }) => theme.spacing.lg};
-  border-radius: ${({ theme }) => theme.borderRadius.base};
   align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+  min-height: 2.75rem;
   width: 100%;
-  text-decoration: ${({ done }) => (done ? 'line-through' : 'none')};
+`;
+
+export const StatusBadge = styled.span<ContainerProps>`
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  flex-shrink: 0;
+  background-color: ${({ done, theme }) =>
+    done ? theme.colors.success : theme.colors.accent};
+`;
+
+export const Label = styled.p<ContainerProps>`
   color: ${({ done, theme }) =>
-    done ? theme.colors.neutral.text : theme.colors.neutral.textLight};
-  transition: all ${({ theme }) => theme.transitions.normal};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.gray[700]};
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    flex: 1;
-    padding: ${({ theme }) => theme.spacing.md};
-  }
-`;
-
-export const Label = styled.label`
-  flex: 1;
-  margin-left: ${({ theme }) => theme.spacing.md};
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+    done ? theme.colors.muted : theme.colors.foreground};
+  text-decoration: ${({ done }) => (done ? 'line-through' : 'none')};
   font-size: ${({ theme }) => theme.typography.fontSize.base};
-  cursor: pointer;
-  user-select: none;
-  width: 30px;
-
-  ${({ theme }) => theme.media.tablet} {
-    margin-left: ${({ theme }) => theme.spacing.lg};
-  }
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  word-break: break-word;
 `;
 
-export const InputCheckbox = styled.input`
-  width: 1.2rem;
-  height: 1.2rem;
-  cursor: pointer;
-  accent-color: ${({ theme }) => theme.colors.semantic.success};
-`;
-
-// ============= BOTÕES =============
 const ButtonBase = styled.button`
-  border: none;
-  color: ${({ theme }) => theme.colors.neutral.textLight};
+  min-height: 2.75rem;
+  border-radius: ${({ theme }) => theme.borderRadius.base};
+  border: 1px solid transparent;
+  padding: 0 ${({ theme }) => theme.spacing.md};
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  transition: all ${({ theme }) => theme.transitions.fast};
-  flex: 1;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  transition:
+    transform ${({ theme }) => theme.transitions.fast},
+    background-color ${({ theme }) => theme.transitions.fast},
+    border-color ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.md};
+    transform: translateY(-1px);
   }
 
   &:active {
     transform: translateY(0);
   }
-
-  &:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    flex: initial;
-    padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
-    font-size: ${({ theme }) => theme.typography.fontSize.base};
-  }
 `;
 
-export const ButtonRemoveTask = styled(ButtonBase)`
-  background-color: ${({ theme }) => theme.colors.semantic.error};
+export const ButtonCompleteTask = styled(ButtonBase)`
+  background-color: ${({ theme }) => theme.colors.successSoft};
+  color: ${({ theme }) => theme.colors.success};
+  border-color: rgba(22, 101, 52, 0.22);
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.semantic.errorHover};
-    color: ${({ theme }) => theme.colors.neutral.textLight};
+    background-color: ${({ theme }) => theme.colors.success};
+    color: #fff;
   }
 `;
 
 export const ButtonEditTask = styled(ButtonBase)`
-  background-color: ${({ theme }) => theme.colors.semantic.info};
-  margin-left: 0;
+  background-color: ${({ theme }) => theme.colors.infoSoft};
+  color: ${({ theme }) => theme.colors.info};
+  border-color: rgba(29, 78, 216, 0.22);
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.semantic.infoHover};
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    margin-left: ${({ theme }) => theme.spacing.sm};
+    background-color: ${({ theme }) => theme.colors.info};
+    color: #fff;
   }
 `;
 
-export const ButtonCompleteTask = styled(ButtonBase)`
-  background-color: ${({ theme }) => theme.colors.semantic.success};
-  margin-left: 0;
+export const ButtonRemoveTask = styled(ButtonBase)`
+  background-color: ${({ theme }) => theme.colors.dangerSoft};
+  color: ${({ theme }) => theme.colors.danger};
+  border-color: rgba(185, 28, 28, 0.22);
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.semantic.successHover};
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    margin-left: ${({ theme }) => theme.spacing.sm};
+    background-color: ${({ theme }) => theme.colors.danger};
+    color: #fff;
   }
 `;
 
 export const ContainerButtons = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: ${({ theme }) => theme.spacing.xs};
 
   ${({ theme }) => theme.media.tablet} {
-    width: auto;
-    gap: ${({ theme }) => theme.spacing.md};
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 `;

@@ -5,7 +5,7 @@ import { TaskProvider } from "./context/TaskContext";
 import GlobalStyle from "./styles/globals";
 import { theme } from "./styles/theme";
 
-export function App(): JSX.Element {
+export function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />

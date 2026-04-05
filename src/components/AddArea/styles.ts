@@ -1,70 +1,78 @@
-// components/AddArea/styles.ts
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  border: 0.1rem solid ${({ theme }) => theme.colors.neutral.border};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.sm};
-  margin: ${({ theme }) => theme.spacing.lg} 0;
-  display: flex;
-  flex-direction: column;
+export const Container = styled.form`
+  display: grid;
   gap: ${({ theme }) => theme.spacing.sm};
-  align-items: center;
 
   ${({ theme }) => theme.media.tablet} {
-    flex-direction: row;
+    grid-template-columns: 1fr auto;
+    align-items: end;
     gap: ${({ theme }) => theme.spacing.md};
   }
 `;
 
+export const FieldGroup = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xs};
+`;
+
+export const FieldLabel = styled.label`
+  color: ${({ theme }) => theme.colors.mutedStrong};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+`;
+
 export const Input = styled.input`
-  flex: 1;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  color: ${({ theme }) => theme.colors.neutral.textLight};
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-  padding: ${({ theme }) => theme.spacing.md};
+  min-height: 3rem;
   width: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius.base};
+  background-color: ${({ theme }) => theme.colors.surfaceMuted};
+  color: ${({ theme }) => theme.colors.foreground};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  transition:
+    border-color ${({ theme }) => theme.transitions.fast},
+    background-color ${({ theme }) => theme.transitions.fast};
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.neutral.text};
+    color: ${({ theme }) => theme.colors.muted};
   }
 
-  ${({ theme }) => theme.media.tablet} {
-    font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.surface};
+    outline: none;
   }
 `;
 
 export const ButtonAddTask = styled.button`
-  background-color: ${({ theme }) => theme.colors.actionBg};
+  min-height: 3rem;
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  color: ${({ theme }) => theme.colors.neutral.textLight};
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.base};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
   font-size: ${({ theme }) => theme.typography.fontSize.base};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  cursor: pointer;
-  transition: all ${({ theme }) => theme.transitions.fast};
-  width: 100%;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  transition:
+    transform ${({ theme }) => theme.transitions.fast},
+    background-color ${({ theme }) => theme.transitions.fast};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.actionBgHover};
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.md};
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.primaryHover};
+    transform: translateY(-1px);
   }
 
-  &:active {
+  &:active:not(:disabled) {
     transform: translateY(0);
   }
 
-  &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.semantic.success};
-    outline-offset: 2px;
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    width: auto;
-    white-space: nowrap;
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
 `;

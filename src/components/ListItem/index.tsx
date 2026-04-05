@@ -1,8 +1,6 @@
-// components/ListItem/ListItem.tsx
 import { Item } from '../../context/types';
 import { useTask } from '../../hooks/useTask';
 import * as S from './styles';
-import { useState } from 'react';
 
 type Props = {
   item: Item;
@@ -10,10 +8,8 @@ type Props = {
 
 export function ListItem({ item }: Props) {
   const { handleCompleteTask, handleDeleteTask, handleEditTask } = useTask();
-  const [isChecked, setIsChecked] = useState(item.done);
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+  const handleToggleTaskStatus = () => {
     handleCompleteTask(item.id);
   };
 
@@ -29,18 +25,18 @@ export function ListItem({ item }: Props) {
   };
 
   return (
-    <S.Wrapper done={isChecked}>
-      <S.Container done={isChecked}>
-        <S.Label id={`label-${item.id}`}>{item.name}</S.Label>
+    <S.Wrapper done={item.done}>
+      <S.Container done={item.done}>
+        <S.StatusBadge done={item.done} aria-hidden="true" />
+        <S.Label done={item.done}>{item.name}</S.Label>
       </S.Container>
+
       <S.ContainerButtons>
-        <S.ButtonRemoveTask onClick={handleRemoveClick}>
-          Excluir
-        </S.ButtonRemoveTask>
-        <S.ButtonCompleteTask onClick={handleCheckboxChange}>
-          {isChecked ? 'Marcar como Pendente' : 'Concluir'}
+        <S.ButtonCompleteTask onClick={handleToggleTaskStatus}>
+          {item.done ? 'Reabrir' : 'Concluir'}
         </S.ButtonCompleteTask>
         <S.ButtonEditTask onClick={handleEditClick}>Editar</S.ButtonEditTask>
+        <S.ButtonRemoveTask onClick={handleRemoveClick}>Excluir</S.ButtonRemoveTask>
       </S.ContainerButtons>
     </S.Wrapper>
   );

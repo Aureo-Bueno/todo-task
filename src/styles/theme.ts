@@ -1,52 +1,40 @@
-// theme/theme.ts
 export const theme = {
   colors: {
-    gray: {
-      50: '#f9fafb',
-      100: '#f3f4f6',
-      200: '#e5e7eb',
-      300: '#d1d5db',
-      400: '#9ca3af',
-      500: '#6b7280',
-      600: '#4b5563',
-      700: '#374151',
-      800: '#1f2937',
-      900: '#111827',
-    },
-    neutral: {
-      dark: '#17181f',
-      darkCard: '#20212c',
-      border: '#444',
-      text: '#797a81',
-      textLight: '#fff',
-    },
-    semantic: {
-      error: '#ff6347',
-      errorHover: '#8b0000',
-      success: '#32cd32',
-      successHover: '#228b22',
-      info: '#1c86ee',
-      infoHover: '#104e8b',
-      warning: '#fbbf24',
-      warningHover: '#d97706',
-    },
-    actionBg: '#5aac44',
-    actionBgHover: '#519839',
+    background: '#F6F5F1',
+    backgroundAlt: '#EFECE6',
+    surface: '#FFFEFC',
+    surfaceMuted: '#F8F5EE',
+    foreground: '#1F1B16',
+    muted: '#6B665F',
+    mutedStrong: '#464039',
+    border: '#D9D3C8',
+    primary: '#1C1917',
+    primaryHover: '#292524',
+    accent: '#A16207',
+    accentHover: '#854D0E',
+    success: '#166534',
+    successSoft: '#DCFCE7',
+    danger: '#B91C1C',
+    dangerSoft: '#FEE2E2',
+    info: '#1D4ED8',
+    infoSoft: '#DBEAFE',
+    focus: '#1C1917',
   },
 
   spacing: {
-    xs: '0.25rem',
-    sm: '0.5rem',
-    md: '0.8rem',
-    lg: '1rem',
-    xl: '1.5rem',
-    '2xl': '2rem',
-    '3xl': '2.5rem',
-    '4xl': '3rem',
+    xxs: '0.25rem',
+    xs: '0.5rem',
+    sm: '0.75rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+    '2xl': '2.5rem',
+    '3xl': '3rem',
+    '4xl': '4rem',
   },
 
   breakpoints: {
-    mobile: '320px',
+    mobile: '375px',
     tablet: '768px',
     desktop: '1024px',
     wide: '1280px',
@@ -54,7 +42,7 @@ export const theme = {
   },
 
   media: {
-    mobile: '@media (min-width: 320px)',
+    mobile: '@media (min-width: 375px)',
     tablet: '@media (min-width: 768px)',
     desktop: '@media (min-width: 1024px)',
     wide: '@media (min-width: 1280px)',
@@ -62,8 +50,8 @@ export const theme = {
   },
 
   typography: {
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+    fontFamily: "'Plus Jakarta Sans', 'Segoe UI', sans-serif",
+    displayFamily: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif",
     fontSize: {
       xs: '0.75rem',
       sm: '0.875rem',
@@ -71,8 +59,8 @@ export const theme = {
       lg: '1.125rem',
       xl: '1.25rem',
       '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
+      '3xl': '2rem',
+      '4xl': '2.5rem',
     },
     fontWeight: {
       normal: 400,
@@ -81,33 +69,30 @@ export const theme = {
       bold: 700,
     },
     lineHeight: {
-      tight: 1.1,
+      tight: 1.2,
       normal: 1.5,
-      relaxed: 1.75,
-      loose: 2,
+      relaxed: 1.7,
     },
   },
 
   borderRadius: {
-    sm: '0.25rem',
-    base: '0.4rem',
-    md: '0.5rem',
-    lg: '1rem',
+    sm: '0.5rem',
+    base: '0.75rem',
+    md: '1rem',
+    lg: '1.25rem',
+    xl: '1.5rem',
     full: '9999px',
   },
 
   shadows: {
-    sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
-    base: '0 1px 3px rgba(0, 0, 0, 0.1)',
-    md: '0 4px 6px rgba(0, 0, 0, 0.1)',
-    lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
-    xl: '0 20px 25px rgba(0, 0, 0, 0.1)',
+    sm: '0 1px 0 rgba(28, 25, 23, 0.04)',
+    base: '0 8px 30px rgba(28, 25, 23, 0.07)',
+    md: '0 14px 42px rgba(28, 25, 23, 0.09)',
   },
 
   transitions: {
-    fast: '150ms ease-in-out',
-    normal: '250ms ease-in-out',
-    slow: '350ms ease-in-out',
+    fast: '150ms cubic-bezier(0.2, 0.8, 0.2, 1)',
+    normal: '220ms cubic-bezier(0.2, 0.8, 0.2, 1)',
   },
 } as const;
 

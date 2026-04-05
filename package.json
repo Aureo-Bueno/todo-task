@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-router-dom": "^7.9.6",
     "styled-components": "^6.1.19",
-    "typescript": "^5.9.3",
-    "web-vitals": "^2.1.0"
+    "typescript": "^6.0.2",
+    "web-vitals": "^5.2.0"
   },
   "scripts": {
     "dev": "vite",
@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.25",
-    "@vitejs/plugin-react": "^5.1.1",
-    "vite": "^7.2.2",
-    "vite-tsconfig-paths": "^5.1.4"
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.3",
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }

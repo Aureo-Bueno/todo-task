@@ -2,89 +2,93 @@ import { createGlobalStyle } from 'styled-components';
 import { Theme } from './theme';
 
 const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
-  /* 1. Box-sizing reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
 
-  /* 2. Remove default margins and padding */
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
-  /* 3. Set core body defaults */
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
   body {
-    min-height: 100vh;
+    min-height: 100dvh;
     line-height: ${({ theme }) => theme.typography.lineHeight.normal};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: ${({ theme }) => theme.typography.fontFamily};
-    background-color: ${({ theme }) => theme.colors.neutral.dark};
-    color: ${({ theme }) => theme.colors.neutral.text};
+    background:
+      radial-gradient(circle at 10% 0%, rgba(161, 98, 7, 0.08), transparent 30%),
+      radial-gradient(circle at 90% 10%, rgba(28, 25, 23, 0.07), transparent 34%),
+      ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.foreground};
   }
 
-  /* 4. Reset headings */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     line-height: ${({ theme }) => theme.typography.lineHeight.tight};
     text-wrap: balance;
   }
 
-  /* 5. Reset list styles */
-  ul[role='list'], ol[role='list'] {
-    list-style: none;
+  a {
+    color: inherit;
   }
 
-  /* 6. Reset links */
-  a:not([class]) {
-    text-decoration-skip-ink: auto;
-    color: currentColor;
-  }
-
-  /* 7. Media elements */
-  img, picture, video, canvas, svg {
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
     display: block;
     max-width: 100%;
   }
 
-  /* 8. Form elements */
-  input, button, textarea, select {
+  input,
+  button,
+  textarea,
+  select {
     font: inherit;
+    color: inherit;
   }
 
-  textarea:not([rows]) {
-    min-height: 10em;
+  button {
+    cursor: pointer;
   }
 
-  /* 9. Accessibility - focus management */
   :focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.semantic.info};
-    outline-offset: 2px;
+    outline: 2px solid ${({ theme }) => theme.colors.focus};
+    outline-offset: 3px;
   }
 
-  :focus:not(:focus-visible) {
-    outline: none;
+  ::selection {
+    background: ${({ theme }) => theme.colors.accent};
+    color: #fff;
   }
 
-  /* 10. HTML5 display roles */
-  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-  }
-
-  /* 11. Table styles */
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  /* 12. Scroll margin for anchors */
-  :target {
-    scroll-margin-block: 5ex;
-  }
-
-  /* 13. Root stacking context (para React apps) */
   #root {
     isolation: isolate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 `;
 
